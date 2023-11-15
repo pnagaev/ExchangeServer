@@ -3,5 +3,5 @@
 |---|---|
 |ConfigureExchangeURLs.ps1 | Настройка внешних и внутренних URL для подключения клиентов| 
 |GetExchangeURLs.ps1||
-|||
+|Set-SCP.ps1||
 
