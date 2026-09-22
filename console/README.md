@@ -1,6 +1,6 @@
 # Инструкция по улучшению консоли EMS
 
-*Применимо к **Microsoft Exchange Server***
+*Применимо к **Microsoft Exchange Server 2019***
 
 **EMS** — Exchange Management Shell
 
