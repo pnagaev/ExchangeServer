@@ -18,7 +18,10 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ## Настройка профиля PowerShell
 - Создаём папку WindowsPowerShell, если нет.
 	   ```powershellNew-Item -Type Directory (Split-Path $PROFILE) -Force | Out-Null ```
-- Копируем профиль 
+- Копируем профиль
+```powershell
+ Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/Microsoft.PowerShell_profile.ps1' -OutFile $PROFILE
+```
 - Просматриваем содержимое профиля
 ```powershell
   notepad $PROFILE
