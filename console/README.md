@@ -1,3 +1,7 @@
 
-# Краткая инструкция по улучшению консоли EMS в Microsoft Exchange Server
+# Инструкция по улучшению консоли EMS.
+Применимо к Microsoft Exchange Server
+EMS - Exchange Management Shell
+
+
 
