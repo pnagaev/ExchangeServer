@@ -4,11 +4,12 @@
 
 EMS - Exchange Management Shell
 
-## Установка последнего модуля PSReadLine 2.4.5
-	1. Вариант 1
+## Установка последней версии модуля PSReadLine 2.4.5
+	- Вариант 1
 	    `Install-Module PSReadLine -Force -Scope CurrentUser -SkipPublisherCheck`
-		 `Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force`
-	2. Или копируем с другого сервера в  `C:\Program Files\WindowsPowerShell\Modules\PSReadLine` и смотрим номер версии
+		`Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force`
+	- Вариант 2 
+	     копируем с другого сервера в `C:\Program Files\WindowsPowerShell\Modules\PSReadLine` и смотрим номер версии
 ## Настройка профиля PowerShell
 	1. notepad $PROFILE или `ise $PROFILE`
 	2. Проверяем есть ли папка WindowsPowerShell и создаём, если нет.
