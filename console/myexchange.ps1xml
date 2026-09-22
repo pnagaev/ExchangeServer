@@ -1,0 +1,81 @@
+<Configuration>
+    <ViewDefinitions>  
+
+<!--################################  Get-Mailbox #############################-->
+		<View>
+			<Name>Microsoft.Exchange.Data.Directory.Management.Mailbox</Name>
+			<ViewSelectedBy>
+				<TypeName>Microsoft.Exchange.Data.Directory.Management.Mailbox</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders>
+  				  <TableColumnHeader>
+				        <Label>Name</Label>
+				        <Width>30</Width>
+				  </TableColumnHeader>	
+
+				    <TableColumnHeader>
+				        <Label>Alias</Label>
+				        <Width>15</Width>
+				    </TableColumnHeader>
+
+				  <TableColumnHeader>
+				        <Label>Server</Label>
+				        <Width>10</Width>
+				  </TableColumnHeader>
+	
+				  <TableColumnHeader>
+				        <Label>Database</Label>
+				        <Width>14</Width>
+				  </TableColumnHeader>
+
+				  <TableColumnHeader>
+				        <Label>HiddenAL</Label>
+				        <Width>8</Width>
+				  </TableColumnHeader>
+
+				 <TableColumnHeader>
+					 <Label>UserPrincipalName</Label>
+					 <Width>30</Width>
+				 </TableColumnHeader>
+
+				<TableColumnHeader>
+				    <Label>WindowsEmailAddress</Label>
+				    <Width>50</Width>
+				</TableColumnHeader>
+				</TableHeaders>
+
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+							<TableColumnItem>
+								<PropertyName>Name</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>Alias</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>ServerName</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>Database</PropertyName>
+							</TableColumnItem>
+                                                        <TableColumnItem>
+								<PropertyName>HiddenFromAddressListsEnabled</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>UserPrincipalName</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>WindowsEmailAddress</PropertyName>
+							</TableColumnItem>
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+		<!--################################  Get-Mailbox #############################-->
+		
+				
+	</ViewDefinitions>	
+</Configuration>
