@@ -17,8 +17,10 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 
 ## Настройка профиля PowerShell
 - Создаём папку WindowsPowerShell, если нет.
-	   ```powershellNew-Item -Type Directory (Split-Path $PROFILE) -Force | Out-Null ```
-- Копируем профиль
+```powershell
+  New-Item -Type Directory (Split-Path $PROFILE) -Force | Out-Null
+```
+- Копируем профиль(Внимание, данная операция перезапишет существующий профиль)
 ```powershell
  Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/Microsoft.PowerShell_profile.ps1' -OutFile $PROFILE
 ```
@@ -31,7 +33,7 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ## Настройка отображения для get-mailbox 
 - Создаём **c:\scripts**, если нет.
 ```powershell
- `New-Item -Type Directory "C:\scripts" -Force | Out-Null`
+ New-Item -Type Directory "C:\scripts" -Force | Out-Null
  ```
 - Копируем файл 
 ```powershell
