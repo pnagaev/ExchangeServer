@@ -1,4 +1,5 @@
 # Инструкция по улучшению консоли EMS
+Статус:DRAFT
 
 *Применимо к **Microsoft Exchange Server 2019***
 
