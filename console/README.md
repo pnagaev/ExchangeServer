@@ -14,7 +14,8 @@ Install-Module PSReadLine -Force -Scope CurrentUser -SkipPublisherCheck
 Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ```
 ### Вариант 2 
-- Копируем папку с номером версии другого сервера в `C:\Program Files\WindowsPowerShell\Modules\PSReadLine`.
+- Папка с PSReadLine находится в `C:\Program Files\WindowsPowerShell\Modules\PSReadLine\2.4.5`
+- Копируем папку с установленным PSReadLine на свой сервер по этому же пути.
 
 ## Настройка профиля PowerShell
 - Создаём папку WindowsPowerShell, если нет.
