@@ -29,6 +29,11 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
   ise $PROFILE
 ```
 ## Настройка отображения для get-mailbox 
-* Создаём **c:\scripts**, если нет.
+- Создаём **c:\scripts**, если нет.
+```powershell
  `New-Item -Type Directory "C:\scripts" -Force | Out-Null`
-* asdf 
+ ```
+- Копируем файл 
+```powershell
+ Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/myexchange.ps1xml' -OutFile 'C:\Scripts\myexchange.ps1xml'
+```  
