@@ -20,7 +20,14 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ```
 ### Вариант 2(Ручной — если нет доступа к интернету) 
 - Найдите сервер с установленным PSReadLine 2.4.5
-- Папка с PSReadLine находится в `C:\Program Files\WindowsPowerShell\Modules\PSReadLine\2.4.5`
+- Папка с PSReadLine находится в
+```powershell
+  explorer "$HOME\Documents\WindowsPowerShell\Modules\PSReadLine"
+```
+или
+```powershell
+    explorer `C:\Program Files\WindowsPowerShell\Modules\PSReadLine\`
+```
 - Скопируйте вручную папку с установленным PSReadLine на свой сервер по этому же пути.
 - Если там есть предыдущие версии, то их удалять не обязательно, PowerShell выберет последнюю.
 
