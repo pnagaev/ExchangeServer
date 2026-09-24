@@ -1,32 +1,37 @@
-# Инструкция по улучшению консоли EMS (Статус:DRAFT)
+# Инструкция по улучшению консоли EMS
 
-
+**Статус: Рекомендованная конфигурация**
 *Применимо к **Microsoft Exchange Server 2019***
 
-**EMS** — Exchange Management Shell
+## 0. Подготовка
+Перед началом работы убедитесь, что вы запустили PowerShell от имени Администратора.
 
 ## 1. Установка последней версии модуля PSReadLine 2.4.5
-
-### Вариант 1
+Модуль PSReadLine обеспечивает продвинутый ввод данных (подсказки, история, автодополнение).
+### Вариант 1(Автоматический)
 
 ```powershell
 Install-Module PSReadLine -Force -Scope CurrentUser -SkipPublisherCheck
 Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ```
-### Вариант 2 
+### Вариант 2(Ручной — если нет доступа к интернету) 
+- Найдите сервер с установленным PSReadLine 2.4.5
 - Папка с PSReadLine находится в `C:\Program Files\WindowsPowerShell\Modules\PSReadLine\2.4.5`
 - Копируем вручную папку с установленным PSReadLine на свой сервер по этому же пути.
+- Если там есть предыдущие версии, то их удалять не обязательно, PowerShell выберет последнюю.
 
 ## 2. Настройка профиля PowerShell
-- Создаём папку WindowsPowerShell, если нет.
+Профиль — это скрипт, который выполняется при каждом запуске оболочки.
+
+ 1.	Создаем папку профиля WindowsPowerShell(если она отсутствует).
 ```powershell
   New-Item -Type Directory (Split-Path $PROFILE) -Force | Out-Null
 ```
-- Копируем профиль(Внимание, данная операция перезапишет существующий профиль)
+ 2. Загружаем кастомный профиль (Внимание, данная операция перезапишет существующий профиль)
 ```powershell
  Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/Microsoft.PowerShell_profile.ps1' -OutFile $PROFILE
 ```
-- Просматриваем содержимое профиля
+3. Проверка содержимого профиля
 ```powershell
   notepad $PROFILE
   #или
