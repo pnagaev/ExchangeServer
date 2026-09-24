@@ -68,6 +68,8 @@ Invoke-WebRequest `
     'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip' `
     -OutFile "$env:TEMP\Hack.zip"
 Expand-Archive "$env:TEMP\Hack.zip" "$env:TEMP\Hack" -Force
+
+explorer.exe $env:TEMP
 ```
 3. Запустите консоль EMS, нажимите ПКМ на заголовке окна, выберите пункт меню **Default** и перейдите во вкладку **Font**
 4. Устанавливите шрифт *Cascadia Mono** и размер шрифта по умолчанию 24
