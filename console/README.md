@@ -30,7 +30,7 @@ explorer "C:\Program Files\WindowsPowerShell\Modules\PSReadLine\"
 ```
 3. Скопируйте вручную папку с установленным PSReadLine на свой сервер по этому же пути.
 4. Если там есть предыдущие версии, то их удалять не обязательно, PowerShell выберет последнюю.
-5. Убедитесь, что в PowerShell загружается последняя версия PSReadLine
+5. Перезапустите EMS и убедитесь, что загружается последняя версия PSReadLine
 ```powershell
 get-module psreadline
 ```
