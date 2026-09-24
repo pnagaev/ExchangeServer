@@ -36,29 +36,29 @@ explorer "C:\Program Files\WindowsPowerShell\Modules\PSReadLine\"
 
  1.	Создаем папку профиля WindowsPowerShell(если она отсутствует).
 ```powershell
-  New-Item -Type Directory (Split-Path $PROFILE) -Force | Out-Null
+New-Item -Type Directory (Split-Path $PROFILE) -Force | Out-Null
 ```
  2. Загружаем кастомный профиль (Внимание, данная операция перезапишет существующий профиль)
 ```powershell
- Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/Microsoft.PowerShell_profile.ps1' -OutFile $PROFILE
+Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/Microsoft.PowerShell_profile.ps1' -OutFile $PROFILE
 ```
 3. Проверка содержимого профиля
 ```powershell
-  notepad $PROFILE
+notepad $PROFILE
 ```
 или
 ```powershell
-  ise $PROFILE
+ise $PROFILE
 ```
 ## 3. Кастомизация вывода get-mailbox 
 Настройка визуального отображения командлета get-mailbox с важными полями.
 1. Создаем директорию для скриптов **c:\scripts**, если она отсутствует.
 ```powershell
- New-Item -Type Directory "C:\scripts" -Force | Out-Null
+New-Item -Type Directory "C:\scripts" -Force | Out-Null
  ```
 2. Скачиваем файл настроек 
 ```powershell
- Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/myexchange.ps1xml' -OutFile 'C:\Scripts\myexchange.ps1xml'
+Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/myexchange.ps1xml' -OutFile 'C:\Scripts\myexchange.ps1xml'
 ```
 ## 4. Визуальное оформление консоли
 ### Ярлык и права доступа
@@ -91,11 +91,11 @@ explorer.exe $env:TEMP
 Это уберет лишние текстовые блоки при запуске.
 1. Запустите EMS от админа и сделайте копию системных файлов.
 ```powershell
-  cp "$($exbin)RemoteExchange.ps1" "$($exbin)RemoteExchange-old.ps1"
+cp "$($exbin)RemoteExchange.ps1" "$($exbin)RemoteExchange-old.ps1"
 ```
 2. Откройте файл для редактирования:
 ```powershell
-  notepad "C:\Program Files\Microsoft\Exchange Server\V15\bin\RemoteExchange.ps1"
+notepad "C:\Program Files\Microsoft\Exchange Server\V15\bin\RemoteExchange.ps1"
 ```
 3. Найдите блок ## FILTERS и закомментируйте строки с get-exbanner и get-tip:
 ```powershell
