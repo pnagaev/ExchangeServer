@@ -5,7 +5,7 @@
 *Применимо к **Microsoft Exchange Server 2019***
 
 ## 0. Подготовка
-Перед началом работы убедитесь, что вы запустили PowerShell от имени Администратора.
+Перед началом работы убедитесь, что вы запускаете Exchange Management Shell(EMS) от имени Администратора.
 
 ## 1. Установка последней версии модуля PSReadLine 2.4.5
 Модуль PSReadLine обеспечивает продвинутый ввод данных (подсказки, история, автодополнение).
@@ -18,7 +18,7 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ### Вариант 2(Ручной — если нет доступа к интернету) 
 - Найдите сервер с установленным PSReadLine 2.4.5
 - Папка с PSReadLine находится в `C:\Program Files\WindowsPowerShell\Modules\PSReadLine\2.4.5`
-- Копируем вручную папку с установленным PSReadLine на свой сервер по этому же пути.
+- Скопируйте вручную папку с установленным PSReadLine на свой сервер по этому же пути.
 - Если там есть предыдущие версии, то их удалять не обязательно, PowerShell выберет последнюю.
 
 ## 2. Настройка профиля PowerShell
@@ -38,38 +38,39 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
   #или
   ise $PROFILE
 ```
-## 3. Настройка "правильного" отображения для get-mailbox 
-- Создаём **c:\scripts**, если нет.
+## 3. Кастомизация вывода get-mailbox 
+Настройка визуального отображения командлета get-mailbox с важными полями.
+1. Создаем директорию для скриптов **c:\scripts**, если она отсутствует.
 ```powershell
  New-Item -Type Directory "C:\scripts" -Force | Out-Null
  ```
-- Копируем файл 
+2. Скачиваем файл настроек 
 ```powershell
  Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/myexchange.ps1xml' -OutFile 'C:\Scripts\myexchange.ps1xml'
 ```
-## 4. Настройка консоли
-### Ярлык
-- Находим местоположение ярлыка **C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Exchange Server**
-- Изменяем в свойствах **Properties\Advanced\Run as Administrator** или запускаем консоль EMS удерживая **Ctrl+Enter**
-- Нажимаем ПКМ над ярлыком и нажимаем **Pin to Taskbar**
-### Шрифт
-- Скачиваем из Интернета и устанавливаем в систему шрифт **Cascadia Mono**, **Hack Nerd Font Mono**
-- Запускаем консоль EMS и нажимаем ПКМ на заголовке окна, выбираем **Default** и переходим во вкладку **Font**
-- Устанавливаем шрифт *Cascadia Mono** и размер шрифта по умолчанию 24
+## 4. Визуальное оформление консоли
+### Ярлык и права доступа
+1. Найдите ярлык EMS в **C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Exchange Server**
+2. В свойствах ярлыка (вкладка **Дополнительно\Advanced**) поставьте галочку **«Запускать от имени администратора»/Run as Administrator** 
+3. Закрепите ярлык на панели задач путём нажатия ПКМ над ярлыком и выбора пункта меню **Pin to Taskbar**
+4. Альтернатива проделанным выше изменениям - запуск консоли EMS удерживая **Ctrl+Enter**
+### Шрифт и прозрачность
+1. Скачайте из Интернета и устанавливите в систему шрифты **Cascadia Mono**, **Hack Nerd Font Mono**
+2. Запустите консоль EMS, нажимите ПКМ на заголовке окна, выберите пункт меню **Default** и перейдите во вкладку **Font**
+3. Устанавливите шрифт *Cascadia Mono** и размер шрифта по умолчанию 24
+4. Перейдите во вкладку **Color** и устанавливаем прозрачность 90%
 
-### Прозрачность
-- Переходим во вкладку **Color** и устанавливаем прозрачность 90%
-
-## 5. Убираем Tips&Tricks
-- Запускаем EMS от админа и делаем копию файла.
+## 5. Отключение системных уведомлений Tips&Tricks
+Это уберет лишние текстовые блоки при запуске.
+1. Запустите EMS от админа и сделайте копию системных файлов.
 ```powershell
   cp "$($exbin)RemoteExchange.ps1" "$($exbin)RemoteExchange-old.ps1"
 ```
-- Открываем файл
+2. Откройте файл для редактирования:
 ```powershell
   notepad "C:\Program Files\Microsoft\Exchange Server\V15\bin\RemoteExchange.ps1"
 ```
-- находим строки
+3. Найдите блок ## FILTERS и закомментируйте строки с get-exbanner и get-tip:
 ```powershell
 ## FILTERS #################################################################
 ## Assembles a message and writes it to file from many sequential BinaryFileDataObject instances 
@@ -77,42 +78,22 @@ Filter AssembleMessage ([String] $Path) { Add-Content -Path:"$Path" -Encoding:"B
 
 ## now actually call the functions 
 
-get-exbanner 
-get-tip 
-```
-и комментируем строки
-
-```powershell
 #get-exbanner 
 #get-tip 
 ```
-- Сохраняем файл.
+4. Сохраните и закройте файл.
   
-## 6. Настройка Prompt
-- Запускаем EMS от админа и делаем копию файла
+## 6. Настройка кастомного Prompt
+Изменение строки ввода для удобства мониторинга пути и прав.
+1. Запустите EMS от имени администратора и сделайте копию файла
 ```powershell
 cp "$($exbin)CommonConnectFunctions.ps1" "$($exbin)CommonConnectFunctions-old.ps1"
 ```
-- Открываем файл для внесения изменений
+2. Откройте файл 
 ```powershell
 notepad "C:\Program Files\Microsoft\Exchange Server\V15\bin\CommonConnectFunctions.ps1"
 ```
-- Находим функцию prompt
-```powershell
-## PROMPT ####################################################################
-
-## PowerShell can support very rich prompts, this simple one prints the current
-## working directory and updates the console window title to show the machine 
-## name and directory.  
-
-function prompt 
-{ 
-	$cwd = (get-location).Path
-	$host.UI.RawUI.WindowTitle = ($CommonConnectFunctions_LocalizedStrings.res_0004 -f $global:connectedFqdn)
-	$host.UI.Write("Yellow", $host.UI.RawUI.BackGroundColor, "[PS]")
-	" $cwd>" 
-```
--Полностью удаляем функцию prompt и вставляем код ниже
+3. Найдите функцию prompt {..} и полностью удалите её и замените на код ниже
 
 ```powershell
 # ===== Рамочный prompt — дизайнерская палитра =====
@@ -161,5 +142,5 @@ function prompt {
 # =====================================================
 
 ```
-- закрываем EMS и запускаем заново.
+4. Сохраните файл, закройте консоль и запустите EMS снова
 
