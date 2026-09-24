@@ -13,6 +13,9 @@
 
 ```powershell
 Install-Module PSReadLine -Force -Scope CurrentUser -SkipPublisherCheck
+```
+или
+```powershell
 Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ```
 ### Вариант 2(Ручной — если нет доступа к интернету) 
