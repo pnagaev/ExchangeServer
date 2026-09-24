@@ -96,50 +96,85 @@ notepad "C:\Program Files\Microsoft\Exchange Server\V15\bin\CommonConnectFunctio
 3. Найдите функцию prompt {..} и полностью удалите её и замените на код ниже
 
 ```powershell
-# ===== Рамочный prompt — дизайнерская палитра =====
+# ============================================================================
+# EMS custom prompt
+# ============================================================================
+
 $esc   = [char]27
 $reset = "$esc[0m"
- 
-# Рамочные символы через коды
+
+# Unicode box characters
 $BoxTL = [char]0x250C   # ┌
 $BoxBL = [char]0x2514   # └
 $BoxH  = [char]0x2500   # ─
- 
-# Палитра (один блок — легко перекрашивать)
-$C_Frame  = "$esc[38;5;240m"   # каркас — графит
-$C_Accent = "$esc[38;5;208m"   # скобки/разделители — янтарный
-$C_User   = "$esc[38;5;117m"   # имя — небесный
-$C_Host   = "$esc[38;5;109m"   # хост — шалфейный
-$C_Path   = "$esc[38;5;222m"   # путь — сливочный
-$C_Prompt = "$esc[1;38;5;176m" # $ — жирный орхидный
-$C_AdmRed = "$esc[1;91m"       # админ — жирный красный
- 
-# Заголовок окна и флаг админа — один раз
-$Host.UI.RawUI.WindowTitle = "$env:USERNAME@$env:COMPUTERNAME`: $((Get-Location).ProviderPath)"
-$IsAdmin = (whoami /groups) -match 'S-1-5-32-544'
- 
+
+# Colors
+$C_Frame  = "$esc[38;5;240m"
+$C_Accent = "$esc[38;5;208m"
+$C_User   = "$esc[38;5;117m"
+$C_Host   = "$esc[38;5;109m"
+$C_Path   = "$esc[38;5;222m"
+$C_Prompt = "$esc[1;38;5;176m"
+$C_AdmRed = "$esc[1;91m"
+
+# Determine elevation once
+$Identity  = [Security.Principal.WindowsIdentity]::GetCurrent()
+$Principal = New-Object Security.Principal.WindowsPrincipal($Identity)
+
+$IsAdmin = $Principal.IsInRole(
+    [Security.Principal.WindowsBuiltInRole]::Administrator
+)
+
 function prompt {
-    $MyLocation    = (Get-Location).Path
-    $MyWindowWidth = $Host.UI.RawUI.MaxWindowSize.Width - 15
- 
+
+    $MyLocation = (Get-Location).Path
+
+    # Window title
+    $Host.UI.RawUI.WindowTitle =
+        "$env:USERNAME@$env:COMPUTERNAME`: $MyLocation"
+
+    # Available width
+    $MyWindowWidth = [Math]::Max(
+        40,
+        $Host.UI.RawUI.WindowSize.Width - 15
+    )
+
+    # Shorten long path
     if ($MyLocation.Length -gt $MyWindowWidth) {
-        $MyLocation = $MyLocation.Substring(0,9) + "..." + $MyLocation.Substring($MyLocation.Length - 20, 20)
+
+        $TailLength = [Math]::Min(30, $MyLocation.Length - 10)
+
+        $MyLocation =
+            $MyLocation.Substring(0, 9) +
+            '...' +
+            $MyLocation.Substring($MyLocation.Length - $TailLength)
     }
- 
-    # Имя: красное и жирное для админа, небесное для пользователя
-    $NameColor = if ($IsAdmin) { $C_AdmRed } else { $C_User }
- 
-    # ┌──(user-host)[путь]
+
+    $NameColor = if ($IsAdmin) {
+        $C_AdmRed
+    }
+    else {
+        $C_User
+    }
+
+    # ┌──(user-host)[path]
     Write-Host "$C_Frame$BoxTL$BoxH$BoxH" -NoNewline
-    Write-Host "$C_Accent($NameColor$env:USERNAME$C_Accent-$C_Host$env:COMPUTERNAME$C_Accent)" -NoNewline
-    Write-Host "$C_Frame[$C_Path$MyLocation$C_Frame]" -NoNewline
- 
+
+    Write-Host `
+        "$C_Accent($NameColor$env:USERNAME$C_Accent-$C_Host$env:COMPUTERNAME$C_Accent)" `
+        -NoNewline
+
+    Write-Host `
+        "$C_Frame[$C_Path$MyLocation$C_Frame]" `
+        -NoNewline
+
     # └─$
-    Write-Host "`n$C_Frame$BoxBL$BoxH$C_Prompt`$$reset" -NoNewline
- 
-    return " "
+    Write-Host `
+        "`n$C_Frame$BoxBL$BoxH$C_Prompt`$$reset" `
+        -NoNewline
+
+    return ' '
 }
-# =====================================================
 
 ```
 4. Сохраните файл, закройте консоль и запустите EMS снова
