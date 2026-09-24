@@ -15,7 +15,7 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ```
 ### Вариант 2 
 - Папка с PSReadLine находится в `C:\Program Files\WindowsPowerShell\Modules\PSReadLine\2.4.5`
-- Копируем папку с установленным PSReadLine на свой сервер по этому же пути.
+- Копируем вручную папку с установленным PSReadLine на свой сервер по этому же пути.
 
 ## Настройка профиля PowerShell
 - Создаём папку WindowsPowerShell, если нет.
@@ -43,8 +43,12 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 ```
 ## Настройка консоли
 ### Ярлык
-
+- Находим местоположение ярлыка **C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Exchange Server**
+- Изменяем в свойствах **Properties\Advanced\Run as Administrator** или запускаем консоль EMS удерживая **Ctrl+Enter**
+- Нажимаем ПКМ над ярлыком и нажимаем **Pin to Taskbar**
 ### Шрифт
+- 
+- Запускаем консоль
 
 ### Прозрачность
 
