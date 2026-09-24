@@ -56,9 +56,22 @@ Install-Module PSReadLine -RequiredVersion 2.4.5 -Scope AllUsers -Force
 4. Альтернатива проделанным выше изменениям - запуск консоли EMS удерживая **Ctrl+Enter**
 ### Шрифт и прозрачность
 1. Скачайте из Интернета и устанавливите в систему шрифты **Cascadia Mono**, **Hack Nerd Font Mono**
-2. Запустите консоль EMS, нажимите ПКМ на заголовке окна, выберите пункт меню **Default** и перейдите во вкладку **Font**
-3. Устанавливите шрифт *Cascadia Mono** и размер шрифта по умолчанию 24
-4. Перейдите во вкладку **Color** и устанавливаем прозрачность 90%
+```powershell
+# Cascadia Mono
+$Release = Invoke-RestMethod 'https://api.github.com/repos/microsoft/cascadia-code/releases/latest'
+$Url = ($Release.assets | Where-Object name -like '*.zip' | Select-Object -First 1).browser_download_url
+Invoke-WebRequest $Url -OutFile "$env:TEMP\CascadiaCode.zip"
+Expand-Archive "$env:TEMP\CascadiaCode.zip" "$env:TEMP\CascadiaCode" -Force
+
+# Hack Nerd Font
+Invoke-WebRequest `
+    'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip' `
+    -OutFile "$env:TEMP\Hack.zip"
+Expand-Archive "$env:TEMP\Hack.zip" "$env:TEMP\Hack" -Force
+```
+3. Запустите консоль EMS, нажимите ПКМ на заголовке окна, выберите пункт меню **Default** и перейдите во вкладку **Font**
+4. Устанавливите шрифт *Cascadia Mono** и размер шрифта по умолчанию 24
+5. Перейдите во вкладку **Color** и устанавливаем прозрачность 90%
 
 ## 5. Отключение системных уведомлений Tips&Tricks
 Это уберет лишние текстовые блоки при запуске.
