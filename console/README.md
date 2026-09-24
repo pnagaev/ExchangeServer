@@ -45,7 +45,9 @@ explorer "C:\Program Files\WindowsPowerShell\Modules\PSReadLine\"
 3. Проверка содержимого профиля
 ```powershell
   notepad $PROFILE
-  #или
+```
+или
+```powershell
   ise $PROFILE
 ```
 ## 3. Кастомизация вывода get-mailbox 
