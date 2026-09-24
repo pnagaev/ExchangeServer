@@ -46,6 +46,10 @@ New-Item -Type Directory (Split-Path $PROFILE) -Force | Out-Null
 ```powershell
 Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/Microsoft.PowerShell_profile.ps1' -OutFile $PROFILE
 ```
+или скопировать профиль с эталонного сервера
+```powershell
+Copy-Item -Path "\\MyServer\C$\Users\MyUser\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -Destination $PROFILE -Force
+```
 3. Проверка содержимого профиля
 ```powershell
 notepad $PROFILE
