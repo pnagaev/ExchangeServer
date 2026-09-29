@@ -83,7 +83,7 @@ Copy-Item -Path "\\MyServer\C$\scripts\myexchange.ps1xml" -Destination "c:\scrip
 3. Закрепите ярлык на панели задач путём нажатия ПКМ над ярлыком и выбора пункта меню **Pin to Taskbar**
 4. Альтернатива проделанным выше изменениям - запуск консоли EMS удерживая **Ctrl+Enter**
 ### Шрифт и прозрачность
-1. Скачайте из Интернета и устанавливите в систему шрифты **Cascadia Mono**, **Hack Nerd Font Mono**
+1. Скачайте из Интернета или эталонного сервера и установите в систему шрифты **Cascadia Mono**, **Hack Nerd Font Mono**
 ```powershell
 # Cascadia Mono
 $Release = Invoke-RestMethod 'https://api.github.com/repos/microsoft/cascadia-code/releases/latest'
