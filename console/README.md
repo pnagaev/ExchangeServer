@@ -72,6 +72,10 @@ New-Item -Type Directory "C:\scripts" -Force | Out-Null
 ```powershell
 Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/myexchange.ps1xml' -OutFile 'C:\Scripts\myexchange.ps1xml'
 ```
+3. Или копируем с эталонного сервера
+```powershell
+Copy-Item -Path "\\MyServer\C$\scripts\myexchange.ps1xml" -Destination "c:\scripts\" -Force
+```
 ## 4. Визуальное оформление консоли
 ### Ярлык и права доступа
 1. Найдите ярлык EMS в **C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Exchange Server**
