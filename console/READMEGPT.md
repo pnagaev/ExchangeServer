@@ -1,6 +1,7 @@
 # Улучшение консоли EMS (Exchange Management Shell)
 
 **Статус:** рекомендованная конфигурация
+
 **Применимо к:** Microsoft Exchange Server 2019 (Windows Server 2019/2022, Windows PowerShell 5.1)
 
 Набор настроек, который делает работу в EMS удобнее:
