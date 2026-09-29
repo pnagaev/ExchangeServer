@@ -81,7 +81,7 @@ Copy-Item -Path "\\MyServer\C$\scripts\myexchange.ps1xml" -Destination "c:\scrip
 1. Найдите ярлык EMS в **C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Exchange Server**
 2. В свойствах ярлыка (вкладка **Дополнительно\Advanced**) поставьте галочку **«Запускать от имени администратора»/Run as Administrator** 
 3. Закрепите ярлык на панели задач путём нажатия ПКМ над ярлыком и выбора пункта меню **Pin to Taskbar**
-4. Альтернатива проделанным выше изменениям - запуск консоли EMS удерживая **Ctrl+Enter**
+4. Альтернатива проделанным выше изменениям - запуск консоли EMS удерживая **Ctrl+Shift+Enter**
 ### Шрифт и прозрачность
 1. Скачайте из Интернета или эталонного сервера и установите в систему шрифты **Cascadia Mono**, **Hack Nerd Font Mono**
 ```powershell
