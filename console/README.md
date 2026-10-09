@@ -86,15 +86,11 @@ Copy-Item -Path "\\MyServer\C$\scripts\myexchange.ps1xml" -Destination "c:\scrip
 1. Скачайте из Интернета или эталонного сервера и установите в систему шрифты **Cascadia Mono**, **Hack Nerd Font Mono**
 ```powershell
 # Cascadia Mono
-$Release = Invoke-RestMethod 'https://api.github.com/repos/microsoft/cascadia-code/releases/latest'
-$Url = ($Release.assets | Where-Object name -like '*.zip' | Select-Object -First 1).browser_download_url
-Invoke-WebRequest $Url -OutFile "$env:TEMP\CascadiaCode.zip"
+Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/fonts/CascadiaCode.zip' -OutFile  "$env:TEMP\CascadiaCode.zip"
 Expand-Archive "$env:TEMP\CascadiaCode.zip" "$env:TEMP\CascadiaCode" -Force
 
 # Hack Nerd Font
-Invoke-WebRequest `
-    'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip' `
-    -OutFile "$env:TEMP\Hack.zip"
+Invoke-WebRequest 'https://raw.githubusercontent.com/pnagaev/ExchangeServer/main/console/fonts/Hack.zip' -OutFile  "$env:TEMP\Hack.zip"
 Expand-Archive "$env:TEMP\Hack.zip" "$env:TEMP\Hack" -Force
 
 explorer.exe $env:TEMP
