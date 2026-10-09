@@ -23,6 +23,7 @@
 - Содержит иконки Font Awesome, Devicons, Powerline, Octicons и других наборов
 - Необходим для корректного отображения тем оформления приглашения командной строки, таких как [Oh My Posh](https://ohmyposh.dev/) и [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - Без него вместо иконок отображаются пустые квадраты или символы-заменители
+- Больше NERD шрифтов (https://www.nerdfonts.com/font-downloads)
 
 ## Установка
 
